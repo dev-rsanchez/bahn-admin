@@ -15,6 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    {{-- {{ dd(auth()->user()->roles->first()->name) }} --}}
                 </div>
             </div>
         </div>

@@ -26,13 +26,22 @@ class PatientController extends Controller
         if ($request) {
             $query = trim($request->get('search'));
 
-            $patients = Patient::where('nombre', 'LIKE', '%' . $query . '%')
+            if (auth()->user()->roles->first()->name == 'Nutricionista') {
+                $patients = Patient::where('nombre', 'LIKE', '%' . $query . '%')
+                ->where('nutricionista', '=', auth()->user()->name)
                 ->orderBy('id', 'asc')
                 ->paginate(5);
 
-            return view('pacientes.index', ['patients' => $patients, 'search' => $query]);
+            } elseif (auth()->user()->roles->first()->name == 'administrador') {
+                $patients = Patient::where('nombre', 'LIKE', '%' . $query . '%')
+                ->orderBy('id', 'asc')
+                ->paginate(5);
 
+            }
+
+            return view('pacientes.index', ['patients' => $patients, 'search' => $query]);
         }
+
     }
 
     /**
@@ -67,6 +76,7 @@ class PatientController extends Controller
         $paciente->actividad = request('actividad');
         $paciente->enteraste_bahn = request('enteraste_bahn');
         $paciente->motivo_consulta = request('motivo_consulta');
+        $paciente->nutricionista = auth()->user()->name;
         $paciente->fecha_evaluacion = request('fecha_evaluacion');
 
         $paciente->save();

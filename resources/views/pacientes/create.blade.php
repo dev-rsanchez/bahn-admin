@@ -74,6 +74,10 @@
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-4">
+                        <label for="rut">RUT</label>
+                        <input type="text" class="form-control" name="rut" id="rut" placeholder="Ingrese el RUT">
+                    </div>
+                    <div class="form-group col-md-4">
                       <label for="nombre">Nombre</label>
                       <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese el nombre">
                     </div>
@@ -81,10 +85,7 @@
                       <label for="apellido">Apellido</label>
                       <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Ingrese el apellido">
                     </div>
-                    <div class="form-group col-md-4">
-                      <label for="rut">RUT</label>
-                      <input type="text" class="form-control" name="rut" id="rut" placeholder="Ingrese el RUT">
-                    </div>
+
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-4">

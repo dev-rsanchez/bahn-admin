@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>AdminLTE 3</title>
+    <title>BAHN</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
@@ -158,7 +158,7 @@
                 <!-- Sidebar -->
                 <div class="sidebar">
                     <!-- Sidebar patient panel-->
-                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="info">
                             <i style="color: white">Paciente:</i>
                             <a href="#" class="d-block">
@@ -167,7 +167,7 @@
                                 @endisset
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
@@ -180,14 +180,14 @@
                                 </a>
                             </li>
 
-                            @can('administrador')
+
                             <li class="nav-item">
                                 <a href="{{ url('pacientes') }}" class="{{ Request::path() === 'pacientes' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon far fa-clipboard"></i>
                                     <p>Pacientes</p>
                                 </a>
                             </li>
-                            @endcan
+
 
                             {{-- @can('administrador')
                             <li class="nav-item has-treeview">
