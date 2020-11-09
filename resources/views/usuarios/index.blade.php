@@ -5,12 +5,12 @@
 <div class="container">
   <h2>Lista de usuarios registrados <a href="usuarios/create"><button type="button" class="btn btn-success float-right">Agregar Usuario</button></a></h2>
   <h6>
-    @if ($search)
+    @if ($search ?? '')
       <div class="alert alert-primary" role="alert">
-        Los resultados de la búsqueda '{{ $search }}' son:
+        Los resultados de la búsqueda '{{ $search ?? '' }}' son:
       </div>
     @endif
-    
+
 </h6>
   <table class="table table-hover">
       <thead>

@@ -17,6 +17,7 @@
     <!-- Styles -->
     <link href="{{ asset('dist/css/adminlte.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
 <body class="hold-transition sidebar-mini layout-navbar-fixed">
@@ -289,10 +290,13 @@
     </div>
 
 <!-- Scripts -->
-@stack('scripts')
+
 <script src="{{ asset('js/app.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-<script src="{{ asset('dist/js/adminlte.js') }}" defer></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js" defer></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" ></script>
+@stack('scripts')
+<script src="{{ asset('dist/js/adminlte.js') }}"></script>
 <script src="{{ asset('dist/js/scripts.js') }}"></script>
 
 </body>

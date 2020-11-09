@@ -6,6 +6,7 @@ use App\Patient;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserFormRequest;
 use App\Http\Requests\UserEditFormRequest;
+use Yajra\DataTables\Facades\DataTables;
 
 class PatientController extends Controller
 {
@@ -23,25 +24,18 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request) {
-            $query = trim($request->get('search'));
-
+        if ($request->ajax()) {
             if (auth()->user()->roles->first()->name == 'Nutricionista') {
-                $patients = Patient::where('nombre', 'LIKE', '%' . $query . '%')
-                ->where('nutricionista', '=', auth()->user()->name)
-                ->orderBy('id', 'asc')
-                ->paginate(5);
-
-            } elseif (auth()->user()->roles->first()->name == 'administrador') {
-                $patients = Patient::where('nombre', 'LIKE', '%' . $query . '%')
-                ->orderBy('id', 'asc')
-                ->paginate(5);
-
+                $patients = Patient::where('nutricionista', '=', auth()->user()->name);
+            } else {
+                $patients = Patient::all();
             }
-
-            return view('pacientes.index', ['patients' => $patients, 'search' => $query]);
+            return DataTables::of($patients)
+                    ->addColumn('action', 'pacientes.actions')
+                    ->rawColumns(['action'])
+                    ->make(true);
         }
-
+        return view('pacientes.index');
     }
 
     /**

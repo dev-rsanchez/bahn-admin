@@ -4,15 +4,15 @@
 
 <div class="container">
     <h2>Lista de pacientes registrados <a href="pacientes/create"><button type="button" class="btn btn-success float-right">Agregar Paciente</button></a></h2>
-    <h6>
+    {{-- <h6>
         @if ($search)
         <div class="alert alert-primary" role="alert">
             Los resultados de la búsqueda '{{ $search }}' son:
         </div>
         @endif
 
-    </h6>
-  <table class="table table-hover">
+    </h6> --}}
+  <table class="table table-striped table-bordered data-table">
       <thead>
         <tr>
           <th scope="col">RUT</th>
@@ -25,7 +25,7 @@
         </tr>
       </thead>
       <tbody>
-          @foreach ($patients as $patient)
+          {{-- @foreach ($patients as $patient)
               <tr>
                   <th scope="row">{{$patient->rut}}</th>
                   <td>{{$patient->nombre}} {{$patient->apellido}}</td>
@@ -44,10 +44,32 @@
                     </form>
                   </td>
               </tr>
-          @endforeach
+          @endforeach --}}
       </tbody>
   </table>
-  {{ $patients->links() }}
 </div>
 
+@push('scripts')
+    <script>
+        $(function(){
+            var table = $('.data-table').DataTable({
+                "language":{
+                    "url":"http://cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
+                },
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('pacientes.index') }}",
+                columns: [
+                    {data: 'rut', name: 'rut'},
+                    {data: 'nombre', name: 'nombre'},
+                    {data: 'email', name: 'email'},
+                    {data: 'motivo_consulta', name: 'motivo_consulta'},
+                    {data: 'fecha_evaluacion', name: 'fecha_evaluacion'},
+                    {data: 'nutricionista', name: 'nutricionista'},
+                    {data: 'action', name: 'action', searchable: false, orderable: false},
+                ]
+            });
+        });
+    </script>
+@endpush
 @endsection

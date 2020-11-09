@@ -17,9 +17,9 @@ Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::resource('usuarios', 'UserController');
+Route::resource('usuarios', UserController::class);
 Route::resource('roles', 'RoleController');
-Route::resource('pacientes', 'PatientController');
+Route::resource('pacientes', PatientController::class);
 
 //Rutas para la sección de notas
 Route::resource('/notas/todas', 'NotasController');
