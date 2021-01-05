@@ -10108,3 +10108,12 @@ a.text-dark:focus {
     float: left;
     width: 50%;
 }
+
+.slider {
+    margin-top: 7px;
+    display: block !important;
+}
+
+.slider.slider-horizontal {
+    width: 100% !important;
+}
